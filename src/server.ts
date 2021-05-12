@@ -1,24 +1,13 @@
-import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
+import Fastify, { FastifyInstance } from 'fastify';
 
 const server: FastifyInstance = Fastify({});
 
-const opts: RouteShorthandOptions = {
-  schema: {
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          pong: {
-            type: 'string',
-          },
-        },
-      },
-    },
-  },
-};
+server.get('/ping', async (req, res) => {
+  res.status(200).send({'ping': "salut", 'response': "ici la route get afin d'envoyer ping" });
+});
 
-server.get('/ping', opts, async (req, res) => {
-  return { pong: 'it worked!' };
+server.get('/pong', async (req, res) => {
+  res.status(200).send({'pong':"re bonjour", 'response':"ici l'autre route get afin d'envoyer pong" });
 });
 
 const start = async () => {
