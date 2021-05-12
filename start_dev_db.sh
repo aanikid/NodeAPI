@@ -11,7 +11,7 @@ if docker ps -f name=pg | grep -w pg; then
   esac
 fi
 
-container_id=$(docker run -d --name pg --rm -p 5433:5432 -e POSTGRES_USER=postgres -e POSTGRES_DB=test -e POSTGRES_PASSWORD=postgres postgres)
+container_id=$(docker run -d --name pg --rm -p 5433:5432 -e POSTGRES_USER=postgres -e POSTGRES_DB=test -e POSTGRES_PASSWORD=postgres postgres:12.6)
 
 echo "Container ID : ${container_id}"
 
