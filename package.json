@@ -1,27 +1,54 @@
 {
-    "name": "server",
-    "version": "1.0.0",
-    "description": "server fastify width typescript",
-    "main": "server.ts",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "rimraf ./build && tsc",
-        "start:dev": "nodemon",
-        "start": "npm run build && node build/server.js",
-        "prettier": "prettier --write src/**/*.ts"
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server fastify width typescript",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore '*.spec.ts' --ignore '*.test.ts' --exec 'ts-node' src/server.ts",
+    "start": "ts-node src/server.ts",
+    "test": "jest --maxWorkers=4",
+    "checkCompile": "npx tsc --noEmit --incremental false",
+    "build": "rimraf ./build && tsc",
+    "prettier": "prettier --write src/**/*.ts"
+  },
+  "jest": {
+    "testMatch": [
+      "**/+(*.)+(spec|test).+(ts)"
+    ],
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!.eslintrc.js",
+      "!**/index.ts",
+      "!**/node_modules/**",
+      "!**/coverage/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 99,
+        "branches": 93,
+        "functions": 100,
+        "lines": 99
+      }
     },
-    "author": "lotfi aanikid",
-    "license": "ISC",
-    "devDependencies": {
-        "@types/node": "^15.0.2",
-        "nodemon": "^2.0.7",
-        "prettier": "^2.3.0",
-        "rimraf": "^3.0.2",
-        "ts-node": "^9.1.1",
-        "typescript": "^4.2.4"
-    },
-    "dependencies": {
-        "fastify": "^3.15.1",
-        "zapatos": "^3.5.1"
-    }
+    "testEnvironment": "node",
+    "preset": "ts-jest"
+  },
+
+  "author": "lotfi aanikid",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.0.2",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.6",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "fastify": "^3.15.1",
+    "zapatos": "^3.5.1"
+  }
 }
