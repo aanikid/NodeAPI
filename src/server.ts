@@ -2,7 +2,7 @@ import Fastify, { FastifyInstance } from 'fastify';
 
 const server: FastifyInstance = Fastify({});
 
-server.get('/ping', async (req, res) => {
+export const testServer = server.get('/ping', async (req, res) => {
   res.status(200).send({'ping': "salut", 'response': "ici la route get afin d'envoyer ping" });
 });
 
